@@ -1,0 +1,8 @@
+server:
+  port: 9041
+spring:
+  application:
+    name: commentReadService
+
+repo:
+  uri: "http://comment-read-repo:9042"
