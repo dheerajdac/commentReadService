@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  comment-read-repo:
+  comment-read-service:
     build: 
       context: .
       dockerfile: docker/Dockerfile
@@ -10,14 +10,17 @@ services:
         #USER_UID: 1000
         #USER_GID: 1000
         TEST: 1000
-    container_name: comment-read-repo
+    container_name: comment-read-service
     ports:
       - "9042:9042"
     environment:
       - PROFILE=production
     networks:
-      - cassandra
+      - commentReadService
+      - commentReadRepo
 networks:
-  cassandra :
+  commentReadService:
+    name: commentReadService
+  commentReadRepo:
     external:
-      name: cassandra
+      name: commentReadRepo
